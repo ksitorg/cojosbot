@@ -57,7 +57,5 @@ return [
     */
     'commands' => [
         Telegram\Bot\Commands\HelpCommand::class,
-        App\BotCommands\StartCommand::class,
-        App\BotCommands\PenisCommand::class,
     ],
 ];
