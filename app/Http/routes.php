@@ -24,7 +24,8 @@ Route::get($prefix.'/', function () {
 
 // Example of POST Route:
 Route::post($prefix.'/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhook', function () {
-
+	
+ 	Log::error("Webhook");
     Telegram::addCommands([
         Telegram\Bot\Commands\HelpCommand::class,
         App\BotCommands\StartCommand::class
@@ -58,8 +59,8 @@ Route::get($prefix.'/'.'sethook', function () {
 
     // Or if you are supplying a self-signed-certificate
     $response = Telegram::setWebhook([
-        'url' => 'https://31.18.208.109/cojosbot/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhook',
-        'certificate' => '/public/key.pub'
+
+        'url' => 'https://h2576776.stratoserver.net/cojosbot/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhook',
     ]);
 
     return $response->getHttpStatusCode().$response->getBody();
