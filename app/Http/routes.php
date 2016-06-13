@@ -78,8 +78,8 @@ Route::get($prefix.'/'.'updates', function () {
 
     Telegram::addCommands([
         Telegram\Bot\Commands\HelpCommand::class,
-        App\BotCommands\StartCommand::class,
         App\BotCommands\PenisCommand::class,
+        App\BotCommands\StartCommand::class,
     ]);
 
     $update = Telegram::commandsHandler(true);
