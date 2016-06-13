@@ -27,6 +27,7 @@ Route::post($prefix.'/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhoo
 	
  	Log::error("Webhook");
     Telegram::addCommands([
+        App\BotCommands\PenisCommand::class,
         Telegram\Bot\Commands\HelpCommand::class,
         App\BotCommands\StartCommand::class
     ]);
