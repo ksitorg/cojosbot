@@ -1,7 +1,6 @@
 <?php
 namespace App\BotCommands;
 
-use App\Entity\UserFactory;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
@@ -13,17 +12,17 @@ use Telegram\Bot\Commands\Command;
  * Time: 01:07
  */
 
-class PenisCommand extends Command
+class TestCommand extends Command
 {
     /**
      * @var string Command Name
      */
-    protected $name = "penis";
+    protected $name = "test";
 
     /**
      * @var string Command Description
      */
-    protected $description = "Ich sag dir wie groß dein Penis ist.";
+    protected $description = "Argumente";
 
     /**
      * @inheritdoc
@@ -32,27 +31,15 @@ class PenisCommand extends Command
     {
         // This will update the chat status to typing...
         $this->replyWithChatAction(['action' => Actions::TYPING]);
-        $update = $this->getUpdate();
+        $argument_array = explode(' ',$arguments);
 
-        $user = UserFactory::create($update->getMessage()->getFrom()->getId());
+        foreach ($argument_array as $key => $value) {
+            $this->replyWithMessage(['text' => 'Argument '.$key.': '.$value]);
 
-        $pinto_size = $user->getPintoSize();
-        if(!$pinto_size || $arguments=='reset') {
-            $pinto_size = rand(0, 10) / 10;
-            $pinto_size += rand(1.0,88);
-            $user->setPintoSize($pinto_size);
         }
-        
-        if ($update->getMessage()->getChat()->getType() == 'private') {
-            $message = 'Dein Pinto ist ';
-        } else {
-            $message = $user->getName() . '\'s Pinto ist ';
-        }
+        $update = $this->getUpdate()->getMessage();
 
-        $message .= $pinto_size.'cm groß.';
-
-        $this->replyWithMessage(['text' => $message]);
-
+        \Log::error("Telegram" . $update);
         // Trigger another command dynamically from within this command
         // When you want to chain multiple commands within one or process the request further.
         // The method supports second parameter arguments which you can optionally pass, By default

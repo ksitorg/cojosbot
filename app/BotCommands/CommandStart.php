@@ -28,6 +28,7 @@ class StartCommand extends Command
      */
     public function handle($arguments)
     {
+        $this->triggerCommand('name');
         // This will send a message using `sendMessage` method behind the scenes to
         // the user/chat id who triggered this command.
         // `replyWith<Message|Photo|Audio|Video|Voice|Document|Sticker|Location|ChatAction>()` all the available methods are dynamically
@@ -55,6 +56,6 @@ class StartCommand extends Command
         // When you want to chain multiple commands within one or process the request further.
         // The method supports second parameter arguments which you can optionally pass, By default
         // it'll pass the same arguments that are received for this command originally.
-        $this->triggerCommand('subscribe');
+        //$this->triggerCommand('subscribe');
     }
 }
