@@ -27,9 +27,11 @@ Route::post($prefix.'/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhoo
 	
  	Log::error("Webhook");
     Telegram::addCommands([
-        App\BotCommands\PenisCommand::class,
         Telegram\Bot\Commands\HelpCommand::class,
-        App\BotCommands\StartCommand::class
+        App\BotCommands\PenisCommand::class,
+        App\BotCommands\StartCommand::class,
+        App\BotCommands\TestCommand::class,
+        App\BotCommands\NameCommand::class,
     ]);
 
     $update = Telegram::commandsHandler(true);
@@ -40,8 +42,9 @@ Route::post($prefix.'/'.'226204927:AAGI6oInXqlJKbQO2E5-KBODHgcl2lbEvhI'.'/webhoo
 
 
 
-    $updates = Telegram::getWebhookUpdates();
+    //$updates = Telegram::getWebhookUpdates();
 
+    //Log::error($updates);
     return 'ok';
 });
 
@@ -81,6 +84,7 @@ Route::get($prefix.'/'.'updates', function () {
         Telegram\Bot\Commands\HelpCommand::class,
         App\BotCommands\PenisCommand::class,
         App\BotCommands\StartCommand::class,
+        App\BotCommands\NameCommand::class,
     ]);
 
     $update = Telegram::commandsHandler(true);
